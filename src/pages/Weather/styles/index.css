@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  flex-wrap: wrap;
+  width: 750px;
+  gap: 40px;
+}
+.container .current {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: rgba(242, 241, 241, 0.9);
+}
+.container .current .right {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+.container .current .right h3 {
+  font-size: 24px;
+}
+.container .current .right p {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.container .current .left {
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.container .current .left .box {
+  width: calc(100% / 3);
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 7px;
+}
+.container .current .left .box h4 {
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.container .current .left .box p {
+  color: rgba(0, 0, 0, 0.7);
+  font-weight: bold;
+}
+.container .next {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: rgba(242, 241, 241, 0.9);
+}
+.container .next .box {
+  width: calc((100% / 3) - 15px);
+}
+.container .next .box h4 {
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.container .next .box p {
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.7);
+}
+.container .next .date p {
+  color: rgba(0, 0, 0, 0.7);
+  font-size: 12px;
+}
