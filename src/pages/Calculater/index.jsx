@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./styles/index.css";
+import Header from "../../components/Header.jsx";
 
 const Index = () => {
   const [displayValue, setDisplayValue] = useState("0");
@@ -65,24 +66,32 @@ const Index = () => {
   });
 
   return (
-    <div className="container">
-      <div className="calculator">
-        <input type="text" className="display" value={displayValue} disabled />
-        <div className="buttons">
-          {[7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "*", 0, "C", "=", "/"].map(
-            (value, index) => (
-              <button
-                key={index}
-                onClick={() => handleButtonClick(value)}
-                onKeyDown={(e) => e.preventDefault()}
-              >
-                {value}
-              </button>
-            )
-          )}
+    <>
+      <Header />
+      <div className="container">
+        <div className="calculator">
+          <input
+            type="text"
+            className="display"
+            value={displayValue}
+            disabled
+          />
+          <div className="buttons">
+            {[7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "*", 0, "C", "=", "/"].map(
+              (value, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleButtonClick(value)}
+                  onKeyDown={(e) => e.preventDefault()}
+                >
+                  {value}
+                </button>
+              )
+            )}
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
