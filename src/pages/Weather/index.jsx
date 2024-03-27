@@ -7,11 +7,6 @@ import axios from "axios";
 const Index = () => {
   const [currentData, setCurrentData] = useState();
   const [nextData, setNextData] = useState();
-  const [ApparentTemperatureMaxData, setApparentMaxData] = useState([]);
-  const [ApparentTemperatureMinData, setApparentMinData] = useState([]);
-  const [temperatureMaxData, setTemperatureMaxData] = useState([]);
-  const [temperatureMinData, setTemperatureMinData] = useState([]);
-  const [time, setTime] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -29,7 +24,7 @@ const Index = () => {
 
       const result = [];
 
-      for (let i = 0; i < 4; i++) {
+      for (let i = 1; i < 4; i++) {
         const obj = {
           apparent_temperature_max: apparent_temperature_max[i],
           apparent_temperature_min: apparent_temperature_min[i],
