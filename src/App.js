@@ -1,7 +1,8 @@
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Weather from "./pages/Weather";
-import Calculator from "./pages/Calculater/index.jsx";
+import Calculator from "./pages/Calculater";
+import StickyNote from "./pages/StickyNote";
 function App() {
   return (
     <div className="App">
@@ -9,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" Component={Weather} />
           <Route path="/calculator" Component={Calculator} />
+          <Route path="/notes" Component={StickyNote} />
         </Routes>
       </BrowserRouter>
     </div>

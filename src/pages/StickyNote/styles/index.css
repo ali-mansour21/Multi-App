@@ -1,0 +1,75 @@
+.sticky-note {
+  display: flex;
+  margin-top: 5%;
+  gap: 20px;
+}
+.sticky-note h2 {
+  margin-bottom: 30px;
+  font-size: 25px;
+  color: rgba(0, 0, 0, 0.8);
+}
+.sticky-note-header {
+  flex-basis: 40%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-left: 30px;
+}
+.sticky-note-header label {
+  display: block;
+  margin-bottom: 3px;
+}
+.sticky-note-header input,
+.sticky-note-header textarea {
+  margin-bottom: 5px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  resize: none;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+.sticky-note-content {
+  flex-basis: 60%;
+  padding-right: 30px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 15px;
+}
+.sticky-note-content .card {
+  width: 200px;
+  height: 200px;
+  border-radius: 15px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 15px;
+}
+.sticky-note-content .card h3 {
+  font-weight: 700;
+}
+.sticky-note-content .card p {
+  font-size: 15px;
+  margin-top: 15px;
+  color: rgba(0, 0, 0, 0.5);
+}
+.sticky-note-content .card div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sticky-note-content .card div .actions {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.sticky-note-content .card div .actions svg:hover {
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.3);
+}
+.note-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.note-wrapper {
+  margin-right: 15px;
+}
