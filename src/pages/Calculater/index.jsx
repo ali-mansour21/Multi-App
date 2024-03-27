@@ -1,33 +1,68 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/index.css";
+
 const Index = () => {
-  const [displayValue, setDisplayValue] = useState("");
+  const [displayValue, setDisplayValue] = useState("0");
   const [expression, setExpression] = useState("");
   const [previousValue, setPreviousValue] = useState("");
 
   const handleButtonClick = (value) => {
     if (value === "=") {
-      try {
-        const result = eval(expression);
-        setDisplayValue(result);
-        setExpression("");
-        setPreviousValue("");
-      } catch (error) {
-        setDisplayValue("Error");
-      }
+      evaluateExpression();
     } else if (value === "C") {
-      setDisplayValue("");
-      setExpression("");
-      setPreviousValue("");
-    } else if (expression === "") {
-      setPreviousValue(displayValue + value);
-      setDisplayValue(displayValue + value);
-      setExpression(displayValue + value);
+      clearCalculator();
     } else {
-      setDisplayValue(displayValue + value);
+      if (displayValue === "0") {
+        setDisplayValue(value);
+      } else {
+        setDisplayValue(displayValue + value);
+      }
       setExpression(expression + value);
     }
   };
+
+  const evaluateExpression = () => {
+    try {
+      const result = eval(expression);
+      setDisplayValue(result.toString());
+      setExpression("");
+      setPreviousValue("");
+    } catch (error) {
+      setDisplayValue("Error");
+    }
+  };
+
+  const clearCalculator = () => {
+    setDisplayValue("0");
+    setExpression("");
+    setPreviousValue("");
+  };
+
+  const handleKeyDown = (event) => {
+    const { key } = event;
+    const validKeys = /[0-9+\-*/.=]|c|Backspace|Enter/;
+    if (validKeys.test(key)) {
+      if (key === "=" || key === "Enter") {
+        evaluateExpression();
+      } else if (key === "c" || key === "Backspace") {
+        clearCalculator();
+      } else {
+        if (displayValue === "0") {
+          setDisplayValue(key);
+        } else {
+          setDisplayValue(displayValue + key);
+        }
+        setExpression(expression + key);
+      }
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  });
 
   return (
     <div className="container">
@@ -36,7 +71,11 @@ const Index = () => {
         <div className="buttons">
           {[7, 8, 9, "+", 4, 5, 6, "-", 1, 2, 3, "*", 0, "C", "=", "/"].map(
             (value, index) => (
-              <button key={index} onClick={() => handleButtonClick(value)}>
+              <button
+                key={index}
+                onClick={() => handleButtonClick(value)}
+                onKeyDown={(e) => e.preventDefault()}
+              >
                 {value}
               </button>
             )
