@@ -12,31 +12,42 @@ const Index = () => {
     title: "",
     content: "",
   });
-  useEffect(() => {
+  const loadNotes = () => {
     const storedNotes = JSON.parse(localStorage.getItem("notes"));
     if (storedNotes) {
       setNoteDataList(storedNotes);
       setNoteId(storedNotes.length);
       updateNotes(storedNotes);
     }
+  };
+  useEffect(() => {
+    loadNotes();
   }, []);
 
   const handleAddNote = () => {
     const newNote = {
-      id: noteId,
+      id: notes.length,
       title: noteData.title,
       content: noteData.content,
     };
-    setNoteDataList([...noteDataList, newNote]);
-    setNoteId(noteId + 1);
-    localStorage.setItem("notes", JSON.stringify([...noteDataList, newNote]));
-    setNoteData({ id: noteId, title: "", content: "" });
+
+    const updatedNotes = [...notes, newNote];
+
+    setNoteDataList(updatedNotes);
+    updateNotes(updatedNotes);
+    localStorage.setItem("notes", JSON.stringify(updatedNotes));
+    setNoteData({ id: noteId + 1, title: "", content: "" });
   };
   const handleOnDragEnd = (result) => {
     const itmes = Array.from(notes);
     const [reorderedNote] = itmes.splice(result.source.index, 1);
     itmes.splice(result.destination.index, 0, reorderedNote);
     updateNotes(itmes);
+  };
+  const handleDeleteNote = (id) => {
+    const updatedNotes = notes.filter((note) => note.id !== id);
+    updateNotes(updatedNotes);
+    localStorage.setItem("notes", JSON.stringify(updatedNotes));
   };
   return (
     <>
@@ -104,7 +115,11 @@ const Index = () => {
                           {...provided.dragHandleProps}
                           className="note-wrapper"
                         >
-                          <Note index={index} note={note} />
+                          <Note
+                            index={index}
+                            onDelete={handleDeleteNote}
+                            note={note}
+                          />
                         </div>
                       )}
                     </Draggable>
